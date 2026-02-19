@@ -1,0 +1,24 @@
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#bar-chart, #piechart{
+    margin: 50px 0;
+}
+
+#bar-chart-svg, #pie-chart-svg{
+    border: 1px solid white;
+}
+
+h2{
+    font-size: 1.5em;
+    color: darkgray;
+}
+
+#pie-info{
+    font-size: 1.2em;
+    margin-top: 20px;
+    font-weight: bold;
+    color: darkgray;
+}

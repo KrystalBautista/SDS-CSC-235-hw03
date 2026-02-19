@@ -10,43 +10,43 @@ Listed below are various aspects of the assignment. When you turn in your work, 
 
 ### Phase 1:
 
-__ 1 pt: Sound data-visual mapping 
+_Yes_ 1 pt: Sound data-visual mapping 
 
-__ 1 pt: Aesthetically pleasing 
+_Yes_ 1 pt: Aesthetically pleasing 
 
-__ 1 pt: Title
+_Yes_ 1 pt: Title
 
-__ 3 pts: Proper x-axis
+_Yes_ 3 pts: Proper x-axis
 
-__ 3 pts: Proper y-axis
+_Yes_ 3 pts: Proper y-axis
 
-__ 3 pts: Functional highlighting 
+_Yes_ 3 pts: Functional highlighting 
 
 
 ### Phase 2:
 
-__ 1 pt: Sound data-visual mapping 
+_Yes_ 1 pt: Sound data-visual mapping 
 
-__ 1 pt: Aesthetically pleasing 
+_Yes_ 1 pt: Aesthetically pleasing 
 
-__ 1 pt: Title
+_Yes_ 1 pt: Title
 
-__ 1 pt: Proper labeling
+_Yes_ 1 pt: Proper labeling
 
-__ 1 pt: Correct proportions 
+_Yes_ 1 pt: Correct proportions 
 
-__ 3 pts: Functional response to click  
+_Yes_ 3 pts: Functional response to click  
 
 ### General:
 
-__ 1 pt: CSS is in an external file, not coded directly in the `.html` file
+_Yes_ 1 pt: CSS is in an external file, not coded directly in the `.html` file
 
-__ 1 pt: JS is in an external file, not coded directly in the `.html` file
+_Yes_ 1 pt: JS is in an external file, not coded directly in the `.html` file
 
-__ 1 pt: Completed `rubric.md` included with submission
+_Yes_ 1 pt: Completed `rubric.md` included with submission
 
-__ 1 pt: Browser compiles code with no errors 
+_Yes_ 1 pt: Browser compiles code with no errors 
 
-__ 1 pt: Interactive components execute fully and consistently with no errors
+_Yes_ 1 pt: Interactive components execute fully and consistently with no errors
 
 __ Changelog: Completed `changelog.md` included with submission

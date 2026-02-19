@@ -296,5 +296,100 @@ let myData = [
       "first_language_millions": "41",
       "second_language_millions": "11",
       "total_millions": "52"
-    }
-  ]
+    }]
+
+function createBarChart() {
+    const familyCounts = d3.rollup(myData, v => v.length, d => d.family);
+    
+    const familyArray = Array.from(familyCounts, ([key, value]) => ({ family: key, count: value }));
+
+    const svg = d3.select("#bar-chart-svg");
+    const width = svg.attr("width");
+    const height = svg.attr("height");
+
+    const margin = { top: 20, right: 30, bottom: 50, left: 50 };
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+
+    const chart = svg.append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    const xScale = d3.scaleBand()
+        .domain(familyArray.map(d => d.family))
+        .range([0, chartWidth])
+        .padding(0.1);
+
+    const yScale = d3.scaleLinear()
+        .domain([0, d3.max(familyArray, d => d.count)])
+        .nice()
+        .range([chartHeight, 0]);
+
+    chart.append("g")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(d3.axisBottom(xScale));
+    
+    svg.append("text")
+        .attr("x", width/2)
+        .attr("y", height - margin.bottom + 40)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .text("Language Family");
+
+    chart.append("g")
+        .call(d3.axisLeft(yScale));
+
+    svg.append("text")
+        .attr("x", -height / 2)
+        .attr("y", margin.left - 40)
+        .attr("transform", "rotate(-90)")
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .text("Number of Languages");
+
+    const bars = chart.selectAll(".bar")
+        .data(familyArray)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", d => xScale(d.family))
+        .attr("y", d => yScale(d.count))
+        .attr("width", xScale.bandwidth())
+        .attr("height", d => chartHeight - yScale(d.count))
+        .attr("fill", "steelblue")
+        .on("click", function(event, d) {
+            const bar = d3.select(this);
+            const currentFill = bar.attr("fill");
+            bar.attr("fill", currentFill === "steelblue" ? "orange" : "steelblue");
+        });
+}
+
+
+
+function createPieChart() {
+    const familyTotal = d3.rollup(myData, v => d3.sum(v, d => +d.total_millions), d => d.family);
+    
+    const pieData = Array.from(familyTotal, ([key, value]) => ({ family: key, total: value }));
+
+    const svg = d3.select("#pie-chart-svg");
+    const width = svg.attr("width");
+    const height = svg.attr("height");
+
+    const radius = Math.min(width, height) / 2;
+    const arc = d3.arc().outerRadius(radius - 10).innerRadius(0);
+    const pie = d3.pie().value(d => d.total);
+
+    const chart = svg.append("g")
+        .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+    const slices = chart.selectAll(".slice")
+        .data(pie(pieData))
+        .enter().append("path")
+        .attr("class", "slice")
+        .attr("d", arc)
+        .attr("fill", d => d3.schemeCategory10[d.index % 10])
+        .on("click", function(event, d) {
+            d3.select("#pie-info").text(`${d.data.family}: ${d.data.total.toFixed(0)} million speakers`);
+        });
+}
+
+createBarChart();
+createPieChart();
